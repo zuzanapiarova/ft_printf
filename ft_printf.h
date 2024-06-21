@@ -1,30 +1,50 @@
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -rf
-AR = ar rcs
-NAME = libftprintf.a
-LIBFT		=		libft
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
+#include <string.h>
+#include <stddef.h>
+#include "libft/libft.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int print_char(char c);
+int print_string(char *str);
+int print_digit(int num, int base);
+int print_pointer();
+int print_percent(void);
+int	ft_printf(const char *format, ...);
+
+#endif
+
+/*
+wokring makefile:
 SOURCES	= ft_printf.c print_char.c print_string.c print_percent.c print_digit.c
-OBJECTS		=		$(SOURCES:.c=.o)
 
+OBJECTS		=		$(SOURCES:.c=.o)
+LIBFT		=		libft
+FLAGS		=		-Wall -Wextra -Werror -g
+NAME		=		libftprintf.a
+RM			=		rm -f
+CC			=		cc
+AR			=		ar rcs
 TEST_PROG = test_ftprintf
 TEST_SRC = test_ftprintf.c
 
 all: $(NAME) $(TEST_PROG)
 
 allc: all clean
-	@echo "Making all and cleaning up"
 
 ${NAME}: ${OBJECTS}
 	make -C $(LIBFT)
 	cp libft/libft.a ./
 	mv libft.a $(NAME)
 	${AR} ${NAME} ${OBJECTS}
+	echo ${OBJECTS}
 
 $(TEST_PROG): $(TEST_SRC) $(NAME)
 	$(CC) $(CFLAGS) -o $(TEST_PROG) $(TEST_SRC) -L. -lftprintf
-	@echo "Creating test program"
+	@echo "Creating and running test program file"
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o $@
@@ -32,7 +52,6 @@ $(TEST_PROG): $(TEST_SRC) $(NAME)
 clean:
 	make clean -C $(LIBFT)
 	${RM} ${OBJECTS}
-	@echo "Removing everything but library and source files"
 
 fclean: clean
 	make fclean -C $(LIBFT)
@@ -40,11 +59,11 @@ fclean: clean
 
 re: fclean all clean
 	make clean -C $(LIBFT)
-	@echo "Cleaning up and redoing all"
 
 lib:
 	make -C $(LIBFT)
 	cp libft/libft.a ./
 	mv libft.a $(NAME)
 
-.PHONY: all clean fclean re allc lib
+.PHONY: all clean fclean re
+*/

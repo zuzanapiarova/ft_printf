@@ -1,9 +1,9 @@
-#include "libftprintf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 int main(void)
 {
-	int a = printf("%%c %c,  %% hi, s %s hi\n", 'z', "zuzka");
-	int b = ft_printf("%%c %c,  %% hi, s %s hi\n", 'z', "zuzka");
+	int p = 2;
+	int a = printf("d:%d\n", p);
+	int b = ft_printf("d:%d\n", p);
 	printf("%d vs %d\n", a, b);
 }

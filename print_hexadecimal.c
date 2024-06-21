@@ -1,30 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_digit.c                                      :+:      :+:    :+:   */
+/*   print_hexadecimal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 00:01:42 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/06/21 12:08:38 by zuzanapiaro      ###   ########.fr       */
+/*   Created: 2024/06/21 17:08:19 by zuzanapiaro       #+#    #+#             */
+/*   Updated: 2024/06/21 17:48:54 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
-#include <unistd.h>
-#include <stdio.h>
 
-int print_digit(int num, int base)
+int print_hexadecimal(int num, int base)
 {
+	char *characters;
+	char *result;
 	int count;
-	char *str;
+	int i;
+	int numdup;
 
+	i = 0;
 	count = 0;
-	str = ft_itoa(num);
-	//printf("printing string from print_digit: %s, base: %d\n", str, base);
-	count += ft_strlen(str);
-	ft_putstr_fd(str, 1);
-	free(str);
+	numdup = num;
+	characters = "123456789abcdef";
+	while (numdup)
+	{
+		numdup /= 16;
+		count++;
+	}
+	result =(char *) malloc(count * sizeof(char));
+	while (num)
+	{
+		result[count - i - 1] = characters[num%16 - 1];
+		i++;
+		num /= 16;
+	}
+	i = 0;
+	while(result[i])
+	{
+		write(1, &result[i], 1);
+		i++;
+	}
+	free(result);
 	return (count);
+}
+
+int main(void)
+{
+	print_hexadecimal(1453, 16);
 }
