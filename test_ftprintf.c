@@ -2,8 +2,9 @@
 
 int main(void)
 {
-	int a = printf("u:%u\n", -1);
-	int b = ft_printf("u:%u\n", -1);
+	int p = 2147483647;
+	int a = printf("p:%p\n", &p);
+	int b = ft_printf("p:%p\n", &p);
 	printf("%d vs %d\n", a, b);
 	// check typecasting unsigned values
 	// unsigned int plusone = 1;

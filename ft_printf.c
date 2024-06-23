@@ -6,7 +6,7 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:49:44 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/06/23 11:16:24 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/06/23 11:47:11 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-//#include "libft.h"
-// include library with specific functions to print argument based on format specifier
 #include "ft_printf.h"
 
-//this function checks the format specifiers cspdiuxX% and calls function based on which specifier it gets
-//for each different specifier we call designated function with the argument as first parameter, and all these functions return number of chars written
+//this function checks the format specifiers cspdiuxX% and calls specific function based on which specifier it gets
+//for each different specifier we call designated function with the argument as first parameter
 //we get the argument by va_arg which fetches next argument from argument list ap and for this function we also need to specify its DT
+// all these functions return number of chars written
 int print_format(char format_specifier, va_list ap)
 {
 	int count;
@@ -50,13 +49,12 @@ int print_format(char format_specifier, va_list ap)
 	// hexadecimal in uppercase - in base 16, prints uppercase letters
 	else if (format_specifier == 'X')
 		count += print_hexadecimal((long)(va_arg(ap, unsigned int)), 'X'); //for hexadecimals we can use same function as for digit but with type unsigned int and base 16
-	/*
 	// pointer - prints memory address of variable - void * pointer argument has to be printed in hexadecimal format
 	else if (format_specifier == 'p')
-		count += print_pointer(va_arg(ap, char *)); //REMOVE 'CHAR' AFTERWARDS
+		count += print_pointer(va_arg(ap, void *));
 	// other unspecified specifiers to handle
 	else
-		count += write(1, &format_specifier, 1); */
+		count += write(1, &format_specifier, 1);
 	return (count);
 }
 

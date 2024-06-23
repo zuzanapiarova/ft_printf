@@ -13,7 +13,7 @@ int print_string(char *str);
 int print_digit(long num);
 int print_unsigned(unsigned long num);
 int print_hexadecimal(long num, char c);
-int print_pointer();
+int print_pointer(void *);
 int print_percent(void);
 int	ft_printf(const char *format, ...);
 
