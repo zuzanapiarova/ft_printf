@@ -6,23 +6,23 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:08:19 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/06/23 09:45:08 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/06/23 12:23:06 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_hexadecimal(long num, char c)
+int print_hexadecimal(unsigned long num, char c)
 {
 	char *characters;
 	char *result;
 	int count;
 	int i;
-	long long numdup;
+	unsigned long long numdup;
 
 	i = 0;
 	count = 0;
-	numdup = num;
+	numdup = (unsigned long long) num;
 	characters = "0123456789abcdef";
 	if (c  == 'X')
 		characters = "0123456789ABCDEF";
@@ -36,6 +36,7 @@ int print_hexadecimal(long num, char c)
 	result =(char *) malloc(count * sizeof(char));
 	if (!result)
 		return 0;
+	result[count] = '\0';
 	while (num)
 	{
 		result[count - i - 1] = characters[num%16];

@@ -6,7 +6,7 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:49:44 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/06/23 11:47:11 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/06/23 12:22:05 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int print_format(char format_specifier, va_list ap)
 		count += print_hexadecimal((long)(va_arg(ap, unsigned int)), 'X'); //for hexadecimals we can use same function as for digit but with type unsigned int and base 16
 	// pointer - prints memory address of variable - void * pointer argument has to be printed in hexadecimal format
 	else if (format_specifier == 'p')
-		count += print_pointer(va_arg(ap, void *));
+		count += print_pointer((unsigned long long)va_arg(ap, void *));
 	// other unspecified specifiers to handle
 	else
 		count += write(1, &format_specifier, 1);

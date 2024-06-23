@@ -6,12 +6,7 @@ int print_string(char *str)
 
 	if (!str)
 		return (write(1, "(null)", 6));
-	count = 0;
-	while(*str)
-	{
-		print_char((int)*str); //typecast to int as chars are interpreted by printf as ints
-		++count;
-		++str;
-	}
+	count = ft_strlen(str);
+	write(1, str, count);
 	return (count);
 }
