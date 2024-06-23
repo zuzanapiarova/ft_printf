@@ -5,7 +5,7 @@ AR = ar rcs
 NAME = libftprintf.a
 LIBFT		=		libft
 
-SOURCES	= ft_printf.c print_char.c print_string.c print_percent.c print_digit.c
+SOURCES	= ft_printf.c print_char.c print_string.c print_percent.c print_digit.c print_hexadecimal.c print_unsigned.c
 OBJECTS		=		$(SOURCES:.c=.o)
 
 TEST_PROG = test_ftprintf

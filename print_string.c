@@ -4,6 +4,8 @@ int print_string(char *str)
 {
 	int count;
 
+	if (!str)
+		return (write(1, "(null)", 6));
 	count = 0;
 	while(*str)
 	{
@@ -11,6 +13,5 @@ int print_string(char *str)
 		++count;
 		++str;
 	}
-
 	return (count);
 }

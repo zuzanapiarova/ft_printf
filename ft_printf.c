@@ -6,7 +6,7 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:49:44 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/06/21 17:08:09 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/06/23 11:16:24 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,24 @@ int print_format(char format_specifier, va_list ap)
 	// string
 	else if (format_specifier == 's')
 		count += print_string(va_arg(ap, char *));
-	// percent sign
+	// prints percent sign
 	else if (format_specifier == '%')
 		count += print_percent();
 	// signed decimal integer - in 10 base
 	else if (format_specifier == 'd')
-		count += print_digit((long)va_arg(ap, int), 10); //use base 10 when working with regular digits
+		count += print_digit((long)(va_arg(ap, int))); //typecast int to long to handle minus values
 	// signed integer in any base
 	else if (format_specifier == 'i')
-		count += print_digit((long)va_arg(ap, int), 10); //typecast int to long to handle minus values
-	// unsigned decimal integer - in 10 base
+		count += print_digit((long)(va_arg(ap, int))); //typecast int to long to handle minus values
+	// unsigned decimal integer
 	else if (format_specifier == 'u')
-		count += print_digit((unsigned long)va_arg(ap, unsigned int), 10);
-
+		count += print_unsigned((unsigned long)(va_arg(ap, unsigned long)));
 	// hexadecimal in lowercase - in base 16, prints lowercase letters
 	else if (format_specifier == 'x')
-		count += print_hexadecimal((long)va_arg(ap, unsigned int), 16); //for hexadecimals we can use same function as for digit but with type unsigned int and base 16
+		count += print_hexadecimal((long)(va_arg(ap, unsigned int)), 'x'); //for hexadecimals we can use same function as for digit but with type unsigned int and base 16
 	// hexadecimal in uppercase - in base 16, prints uppercase letters
 	else if (format_specifier == 'X')
-		count += to_upper(print_hexadecimal((long)va_arg(ap, unsigned int), 16)); //for hexadecimals we can use same function as for digit but with type unsigned int and base 16
+		count += print_hexadecimal((long)(va_arg(ap, unsigned int)), 'X'); //for hexadecimals we can use same function as for digit but with type unsigned int and base 16
 	/*
 	// pointer - prints memory address of variable - void * pointer argument has to be printed in hexadecimal format
 	else if (format_specifier == 'p')
@@ -58,7 +57,6 @@ int print_format(char format_specifier, va_list ap)
 	// other unspecified specifiers to handle
 	else
 		count += write(1, &format_specifier, 1); */
-
 	return (count);
 }
 

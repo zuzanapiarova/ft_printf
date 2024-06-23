@@ -6,7 +6,7 @@
 /*   By: zuzanapiarova <zuzanapiarova@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 00:01:42 by zuzanapiaro       #+#    #+#             */
-/*   Updated: 2024/06/21 12:08:38 by zuzanapiaro      ###   ########.fr       */
+/*   Updated: 2024/06/23 07:37:47 by zuzanapiaro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int print_digit(int num, int base)
+int print_digit(long num)
 {
 	int count;
 	char *str;
 
 	count = 0;
 	str = ft_itoa(num);
-	//printf("printing string from print_digit: %s, base: %d\n", str, base);
 	count += ft_strlen(str);
-	ft_putstr_fd(str, 1);
+	print_string(str);
 	free(str);
 	return (count);
 }
